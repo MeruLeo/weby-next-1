@@ -8,7 +8,7 @@ interface SummaryOfUsProps {
 
 const SummaryOfUs = ({ title, count }: SummaryOfUsProps) => {
     return (
-        <li className="shadow-2xl gradient-border flex justify-center items-center flex-col w-[20rem] h-[7rem] p-4 rounded-[2rem]">
+        <li className="shadow-2xl gradient-border load-card flex justify-center items-center flex-col w-[20rem] h-[7rem] p-4 rounded-[2rem]">
             <h2 className="text-4xl font-daBold text-primary">{count}</h2>
             <p className="text-zinc-400">{title}</p>
         </li>

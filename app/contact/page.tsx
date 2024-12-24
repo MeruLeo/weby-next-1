@@ -1,6 +1,9 @@
+"use client";
+
 /* eslint-disable prettier/prettier */
 import { PrimaryButton } from "@/components/button/Button";
 import { title } from "@/components/primitives";
+import React, { useState } from "react";
 import {
     ChatIcon,
     MapIcon,
@@ -9,6 +12,7 @@ import {
 } from "@/components/icons/Icons";
 import { ReactNode } from "react";
 import Image from "next/image";
+import ModalApp from "@/components/modal/Modal";
 
 interface ContactProps {
     icon: ReactNode;
@@ -28,14 +32,19 @@ const Contact = ({
     buttonHref,
 }: ContactProps) => {
     return (
-        <li className="flex gradient-border__x load-card  flex-col  justify-between items-center w-[12rem] p-4 rounded-[2rem] mb-12">
+        <li className="flex gradient-border sm:gradient-border__x load-card  flex-col  justify-between items-center w-[12rem] p-4 rounded-[2rem] mb-12">
             <div className="flex justify-center items-center backdrop-blur-sm p-4 rounded-full  text-primary  text-center">
                 {icon}
             </div>
             <h2 className="text-xl font-daBold">{title}</h2>
             <p className="mt-4 text-sm">{description}</p>
             {buttonClick ? (
-                <button onClick={buttonClick}>{buttonLabel}</button>
+                <button
+                    onClick={buttonClick}
+                    className="bg-primary w-full rounded-full p-2 mt-4 hover:scale-95 transition"
+                >
+                    {buttonLabel}
+                </button>
             ) : (
                 <a
                     href={buttonHref}
@@ -49,10 +58,14 @@ const Contact = ({
 };
 
 export default function ContactPage() {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const onOpen = () => setIsOpen(true);
+    const onOpenChange = () => setIsOpen(!isOpen);
+
     const contactPaths = [
         {
             title: "تماس تلفنی",
-            description: "+۹۸ ۹۳۳ ۳۳۵ ۲۶۵۰",
+            description: "۰۹۳۳-۳۳۵-۲۶۵۰",
             buttonLabel: "تماس",
             icon: <PhoneIcon />,
             buttonClick: "",
@@ -79,7 +92,7 @@ export default function ContactPage() {
             description: "ساعات کاری ۸ صبح الی ۱۸",
             buttonLabel: "هماهنگی",
             icon: <PresIcon />,
-            buttonClick: "",
+            buttonClick: onOpen,
             buttonHref: "",
         },
     ];
@@ -102,6 +115,11 @@ export default function ContactPage() {
                         {contactPaths.map((contact) => (
                             <Contact key={contact.title} {...contact} />
                         ))}
+                        <ModalApp
+                            isOpen={isOpen}
+                            onOpen={onOpen}
+                            onOpenChange={onOpenChange}
+                        />
                     </ul>
                 </div>
             </section>

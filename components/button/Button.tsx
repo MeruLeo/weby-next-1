@@ -9,6 +9,7 @@ interface ButtonProps {
 export const PrimaryButton = ({ label, click }: ButtonProps) => {
     return (
         <button
+            onClick={click}
             className="
                     cursor-pointer transition-all hover:scale-85 flex items-center justify-center gap-2.5 text-sm px-8 rounded-3xl text-white  
                     border-2 border-[#0618db] h-[50px] py-7 font-semibold scale-[0.89] 
