@@ -6,6 +6,7 @@ import Link from "next/link";
 import { PrimaryButton } from "../button/Button";
 import { Sidebar } from "./Sidebar";
 import { BarsIcon } from "../icons/Icons";
+import ModalApp from "../modal/Modal";
 
 interface HeaderLinkProps {
     href: string;
@@ -22,6 +23,10 @@ const HeaderLink = ({ href, label }: HeaderLinkProps) => {
 
 export const Header = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const onOpen = () => setIsOpen(true);
+    const onOpenChange = () => setIsOpen(!isOpen);
 
     const headerLinks = [
         { href: "/", label: "خانه" },
@@ -54,7 +59,7 @@ export const Header = () => {
 
                 {/* دکمه - فقط در دسکتاپ نمایش داده می‌شود */}
                 <div className="hidden md:flex flex-1 justify-end">
-                    <PrimaryButton label="همین الان ثبت نام کنید" />
+                    <PrimaryButton label="شروع همکاری" click={onOpen} />
                 </div>
 
                 {/* دکمه منو برای موبایل */}
@@ -71,6 +76,11 @@ export const Header = () => {
                 isOpen={isSidebarOpen}
                 onClose={toggleSidebar}
                 links={headerLinks}
+            />
+            <ModalApp
+                isOpen={isOpen}
+                onOpen={onOpen}
+                onOpenChange={onOpenChange}
             />
         </>
     );

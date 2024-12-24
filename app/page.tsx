@@ -1,14 +1,20 @@
 "use client";
 
 import { PrimaryButton } from "@/components/button/Button";
+import ModalApp from "@/components/modal/Modal";
 /* eslint-disable prettier/prettier */
 import { title } from "@/components/primitives";
-import { Input } from "@nextui-org/react";
+import { Input, Modal } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
-    const [isLabel, setIsLabel] = useState<Boolean>(false);
+    const [isLabel, setIsLabel] = useState<boolean>(false);
+    const [inputValue, setInputValue] = useState<string>("");
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const onOpen = () => setIsOpen(true);
+    const onOpenChange = () => setIsOpen(!isOpen);
 
     return (
         <div className="flex flex-col justify-center items-center">
@@ -37,21 +43,23 @@ export default function Home() {
                                 htmlFor="email-input"
                                 style={{ pointerEvents: "none" }}
                                 className={`${
-                                    isLabel
+                                    isLabel || inputValue
                                         ? " -top-3  backdrop-blur-md  px-2"
                                         : "top-[1.25rem] text-sm"
                                 } absolute right-4  rounded-full transition-all ease duration-200 font-daBold text-primary border-primary`}
                             >
-                                ایمیل خود را وارد کنید
+                                شماره خود را وارد کنید
                             </label>
                             <input
                                 id="email-input"
+                                onChange={(e) => setInputValue(e.target.value)}
+                                value={inputValue}
                                 onFocus={() => setIsLabel(true)}
                                 onBlur={() => setIsLabel(false)}
                                 className="border-primary bg-dark bg-opacity-65 border outline-none p-4 rounded-3xl"
                             />
                         </div>
-                        <PrimaryButton label="ارسال" />
+                        <PrimaryButton label="ارسال" click={onOpen} />
                     </div>
                 </div>
             </section>
@@ -65,6 +73,12 @@ export default function Home() {
                     className="z-30 load-text"
                 />
             </section>
+            <ModalApp
+                isOpen={isOpen}
+                onOpen={onOpen}
+                phoneValue={`${inputValue}`}
+                onOpenChange={onOpenChange}
+            />
         </div>
     );
 }
