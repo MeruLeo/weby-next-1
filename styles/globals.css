@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "daLight";
+    src: url("/fonts/DiodrumArabic-Light.ttf");
+}
+@font-face {
+    font-family: "daMedium";
+    src: url("/fonts/DiodrumArabic-Medium.ttf");
+}
+@font-face {
+    font-family: "daBold";
+    src: url("/fonts/DiodrumArabic-Bold.ttf");
+}
+
+:root {
+    --da-light: "daLight", sans-serif;
+    --da-medium: "daMedium", sans-serif;
+    --da-bold: "daBold", sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "daLight";
+    src: url("/fonts/DiodrumArabic-Light.ttf");
+}
+@font-face {
+    font-family: "daMedium";
+    src: url("/fonts/DiodrumArabic-Medium.ttf");
+}
+@font-face {
+    font-family: "daBold";
+    src: url("/fonts/DiodrumArabic-Bold.ttf");
+}
+
+:root {
+    --da-light: "daLight", sans-serif;
+    --da-medium: "daMedium", sans-serif;
+    --da-bold: "daBold", sans-serif;
+}
+
+@layer utilities {
+    .gradient-border {
+        background: rgba(31, 31, 31, 0.5); /* پس‌زمینه شفاف */
+        backdrop-filter: blur(10px); /* افکت بلوری */
+        -webkit-backdrop-filter: blur(10px); /* پشتیبانی از سافاری */
+    }
+
+    .gradient-border::before {
+        content: "";
+        position: absolute;
+        inset: -2px; /* ضخامت بوردر */
+        border-radius: inherit;
+        background: linear-gradient(
+            to right,
+            rgba(4, 79, 199, 0),
+            rgba(89, 136, 210, 0.41) 53%,
+            rgba(4, 79, 199, 0) 100%
+        );
+        z-index: -1;
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        -webkit-mask-composite: exclude;
+        padding: 2px; /* ضخامت بوردر */
+        pointer-events: none; /* جلوگیری از تأثیر روی رویدادها */
+    }
+    .gradient-border__x {
+        background: rgba(31, 31, 31, 0.5); /* پس‌زمینه شفاف */
+        backdrop-filter: blur(10px); /* افکت بلوری */
+        -webkit-backdrop-filter: blur(10px); /* پشتیبانی از سافاری */
+    }
+
+    .gradient-border__x::before {
+        content: "";
+        position: absolute;
+        inset: -2px; /* ضخامت بوردر */
+        border-radius: inherit;
+        background: linear-gradient(
+            to top,
+            rgba(4, 79, 199, 0),
+            rgba(89, 136, 210, 0.41) 53%,
+            rgba(4, 79, 199, 0) 100%
+        );
+        z-index: -1;
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        -webkit-mask-composite: exclude;
+        padding: 2px; /* ضخامت بوردر */
+        pointer-events: none; /* جلوگیری از تأثیر روی رویدادها */
+    }
+}
+
+.load-blur {
+    animation: fadeIn 3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-500px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+.load-blur__x {
+    animation: fadeInX 3s ease-in-out;
+}
+
+@keyframes fadeInX {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.load-text {
+    animation: loadText 1s ease-in-out;
+}
+
+@keyframes loadText {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.load-text__y {
+    animation: loadTextY 1s ease-in-out;
+}
+
+@keyframes loadTextY {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+.load-card {
+    animation: loadCard 1s ease-in-out;
+}
+
+@keyframes loadCard {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: scale(0.1);
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0px);
+        transform: scale(1);
+        transform: translateY(0);
+    }
+}
