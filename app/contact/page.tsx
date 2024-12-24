@@ -98,7 +98,7 @@ export default function ContactPage() {
                         &nbsp;دوست داشتنی ما
                     </h1>
                     <p className="mt-8 shadow-2xl">بیاید باهم حرف بزنیم</p>
-                    <ul className="flex flex-col smLflex-row justify-center  mt-8 sm:gap-4 absolute items-stretch left-1/2 -translate-x-1/2">
+                    <ul className="flex flex-col sm:flex-row justify-center  mt-8 sm:gap-4 absolute items-stretch left-1/2 -translate-x-1/2">
                         {contactPaths.map((contact) => (
                             <Contact key={contact.title} {...contact} />
                         ))}
